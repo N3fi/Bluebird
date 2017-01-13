@@ -6,11 +6,70 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Contact Form</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="spt/Form.js" type="text/javascript"></script>
+        <!--script>window.onload = function(){
+            $test = new Form('truc');
+        }</script-->
+        <script>
+            window.onload = function(){
+                var categorie_1 = document.getElementById('THEME_1');
+                document.getElementById('THEME_1').value = '';
+                document.getElementById('THEME_2').style.visibility = 'hidden';
+                categorie_1.onchange = function(){
+                    
+                    var sousCategories = document.getElementById('THEME_2').getElementsByTagName('optgroup');
+                    document.getElementById('THEME_2').style.visibility = 'hidden';
+                    for(i=0;i<sousCategories.length;i++){
+                        console.log('test1');
+                        sousCategories[i].style.display = 'none';
+                    }
+                    switch(categorie_1.value){
+                        case 'Probleme':
+                            document.getElementById('THEME_2').style.visibility = 'visible';
+                            document.getElementById('THEME_2').value = '';
+                            document.getElementById('Probleme').style.display = 'block';
+                            break;
+                        case 'Emploi':
+                            
+                            document.getElementById('THEME_2').style.visibility = 'visible';
+                            document.getElementById('THEME_2').value = '';
+                            document.getElementById('Emploi').style.display = 'block';
+                    }
+                }
+            }
+            //document.getElementsByName('THEME_1').value == 'Probleme';
+            //document.getElementsByName('THEME_1').value == 'Emploi';
+        </script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <form id="truc">
+            Civilité<label>Monsieur<input type="radio" value="Monsieur" id="CIVILITE_0" name="CIVILITE"/></label> <label>Madame<input type="Madame" name="CIVILITE_1"/></label>
+            <label>Nom <input type="text" obligatoire="true" name="NOM" /></label>
+            <label>Prénom<input type="text" name="PRENOM"/></label>
+            <label>Email<input type="email"></label>
+            <label>Téléphone<input type="tel"></label>
+            <select name="THEME_1" id="THEME_1">
+                <option value="">Choisir une catégorie</option>
+                <option value="Probleme">Problème</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Emploi">Emploi</option>
+                <option value="Autre">Autre</option>
+            </select>
+            <select name="THEME_2" id="THEME_2">
+                <option value="">Choisir une sous-catégorie</option>
+                <optgroup id="Probleme">
+                    <option value="Connexion">Connexion</option>
+                    <option value="Compte piraté">Compte piraté</option>
+                    <option value="Signaler">Signaler</option>
+                </optgroup>
+                <optgroup id="Emploi">
+                    <option value="Annonce">Réponse à une annonce</option>
+                    <option value="Candidature spontanée">Candidature spontanée</option>
+                </optgroup>
+            </select>
+        </form>
     </body>
 </html>
